@@ -68,7 +68,8 @@ export default {
       axios.post(endpoint + "auth",data) 
       .then(response => {
         if (response.data.status == "ok") {
-          console.log("ok")
+          localStorage.token = response.data.result.token
+          this.$router.push('dashboard')
           this.error = false
         } else {
           this.error = true
