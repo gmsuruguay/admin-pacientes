@@ -44,7 +44,7 @@
     },
     methods: {
       editar(id) {
-        console.log(id)
+        this.$router.push("/editar/"+id)
       },
     }
   }
