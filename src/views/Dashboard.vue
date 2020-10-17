@@ -7,13 +7,16 @@
           <th scope="col">Id</th>
           <th scope="col">DNI</th>
           <th scope="col">Nombre</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="paciente in listaPacientes" :key="paciente.PacienteId" @click="editar(paciente.PacienteId)">
+        <tr v-for="paciente in listaPacientes" :key="paciente.PacienteId">
           <th scope="row">{{paciente.PacienteId}}</th>
           <td>{{paciente.DNI}}</td>
-          <td>{{paciente.Nombre}}</td>          
+          <td>{{paciente.Nombre}}</td>    
+          <button class="btn btn-primary" @click="editar(paciente.PacienteId)"> Editar</button>      
+          <button class="btn btn-danger" @click="eliminar(paciente.PacienteId)"> Eliminar</button>      
         </tr>       
       </tbody>
     </table>
@@ -46,6 +49,18 @@
       editar(id) {
         this.$router.push("/editar/"+id)
       },
+      eliminar(id){
+        let obj = {
+          "pacienteId": id,
+          "token":localStorage.getItem("token")
+        }
+        axios.delete("http://solodata.es/pacientes", {headers: obj}).then(result =>{
+        if(result.status == 200){
+          this.$router.go(this.$router.currentRoute)
+        }
+        
+      })
+      }
     }
   }
 </script>
