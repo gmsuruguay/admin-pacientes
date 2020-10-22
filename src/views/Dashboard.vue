@@ -1,6 +1,7 @@
 <template>
   <div>
    <Header/>
+   <button class="btn btn-primary" @click="nuevo()">Nuevo Paciente</button>
    <table class="table">
       <thead>
         <tr>          
@@ -48,6 +49,9 @@
     methods: {
       editar(id) {
         this.$router.push("/editar/"+id)
+      },
+      nuevo() {
+        this.$router.push("/nuevo")
       },
       eliminar(id){
         let obj = {
